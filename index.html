@@ -8,16 +8,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink:       #111111;
+      --ink:       #1a1a1a;
       --paper:     #ffffff;
-      --accent:    #2453ff;
-      --accent-soft: #edf2ff;
-      --accent-line: #d7e0ff
-      --muted:     #6b7280;
-      --rule:      #e8e8e8;
+      --accent:    #1e3765;
+      --accent-soft: #f3f6fb;
+      --accent-line: #d9e1ee
+      --muted:     #666d78;
+      --rule:      #e6e8eb;
       --card-bg:   #fafafa;
-      --tag-bg:    #f4f7ff;
-      --tag-color: #2453ff;
+      --tag-bg:    #f5f7fb;
+      --tag-color: #1e3765;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -82,13 +82,7 @@
     .pub-meta { font-family: 'Noto Sans SC', sans-serif; font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
     .pub-venue { color: var(--accent2); font-weight: 500; }
     .pub-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
-    .badge { font-family: 'Noto Sans SC', sans-serif; font-size: 0.68rem; padding: 0.1rem 0.55rem; border-radius: 2px; letter-spacing: 0.04em; }
-    .badge-top    { background: #fdf0e8; color: #b05c2e; border: 1px solid #e8c8ae; }
-    .badge-ssci   { background: #e8f0f7; color: #2c5f8a; border: 1px solid #b8d0e4; }
-    .badge-cssci  { background: #eef6ee; color: #3a7a3a; border: 1px solid #b0d4b0; }
-    .badge-reprint{ background: #f5f0fa; color: #6b4c9a; border: 1px solid #cdb8e0; }
-    .badge-award  { background: #fffbe8; color: #8a6c00; border: 1px solid #e0d090; }
-    .badge-review { background: #f0f0f0; color: #666;    border: 1px solid #ccc; }
+    .badge { font-family: 'Noto Sans SC', sans-serif; font-size: 0.68rem; padding: 0.18rem 0.65rem; border-radius: 999px; letter-spacing: 0.03em; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-line); }
 
     /* ── 时间线 ── */
     .timeline { display: flex; flex-direction: column; }
