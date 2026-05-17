@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>刘铖 | 个人学术主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #1a1a1a;
+      --paper:     #ffffff;
+      --accent:    #1e3765;
+      --accent-soft: #f3f6fb;
+      --accent-line: #d9e1ee;
+      --muted:     #666d78;
+      --rule:      #e6e8eb;
+      --card-bg:   #fafafa;
+      --tag-bg:    #f5f7fb;
+      --tag-color: #1e3765;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Serif SC', 'Songti SC', serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    /* ── 导航 ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-brand { font-size: 1.05rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-family: 'Noto Sans SC', sans-serif; font-size: 0.82rem; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── 布局 ── */
+    .wrapper { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── Hero ── */
+    #hero { padding: 4.5rem 0 3.5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 240px; gap: 3.5rem; align-items: start; }
+    .hero-name { font-size: 2.6rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .hero-en { font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 0.2rem; }
+    .hero-position { font-family: 'Noto Sans SC', sans-serif; font-size: 0.88rem; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--rule); }
+    .hero-bio { font-size: 0.97rem; color: #3a3830; line-height: 1.9; }
+    .hero-bio strong { color: var(--ink); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.6rem; font-family: 'Noto Sans SC', sans-serif; font-size: 0.82rem; color: var(--muted); }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+    .hero-links a { font-family: 'Noto Sans SC', sans-serif; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; border: 1px solid var(--rule); padding: 0.28rem 0.85rem; border-radius: 3px; transition: all .2s; }
+    .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--tag-bg); }
+    .avatar-box { width: 100%; aspect-ratio: 4 / 5; background: var(--card-bg); border: 1px solid var(--rule); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Noto Sans SC', sans-serif; font-size: 0.72rem; color: var(--muted); overflow: hidden; }
+    .avatar-box img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* ── Section ── */
+    section { padding: 3rem 0; border-top: 1px solid var(--rule); }
+    .sec-label { font-family: 'Noto Sans SC', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .sec-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1.8rem; padding-bottom: 0.7rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+
+    /* ── 论文 ── */
+    .pub-group { margin-bottom: 2.5rem; }
+    .pub-group-title { font-family: 'Noto Sans SC', sans-serif; font-size: 0.96rem; font-weight: 600; letter-spacing: 0.05em; color: #111; margin: 1.5rem 0 1rem 0; padding-left: 0.8rem; border-left: 3px solid #111; }
+    .pub-item { padding: 1rem 0; border-bottom: 1px dashed var(--rule); }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-title-text { font-size: 0.97rem; font-weight: 500; line-height: 1.6; color: var(--ink); margin-bottom: 0.3rem; }
+    .pub-meta { font-family: 'Noto Sans SC', sans-serif; font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .pub-venue { color: var(--accent); font-weight: 500; }
+    .pub-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+    .badge { font-family: 'Noto Sans SC', sans-serif; font-size: 0.68rem; padding: 0.18rem 0.65rem; border-radius: 999px; letter-spacing: 0.03em; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-line); }
+    .pub-abstract { display: none; margin-top: 0.6rem; font-size: 0.85rem; color: #555; line-height: 1.7; border-left: 2px solid var(--rule); padding-left: 0.8rem; }
+    .pub-abstract.show { display: block; }
+    .toggle-title { cursor: pointer; }
+
+    /* ── 时间线 ── */
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item { display: grid; grid-template-columns: 210px 1fr; gap: 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid var(--rule); }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-period { font-family: 'Noto Sans SC', sans-serif; font-size: 0.78rem; color: var(--muted); padding-top: 0.1rem; }
+    .tl-role { font-size: 0.97rem; font-weight: 500; }
+    .tl-org { font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; color: var(--muted); }
+    .tl-detail { font-family: 'Noto Sans SC', sans-serif; font-size: 0.82rem; color: #555; margin-top: 0.2rem; line-height: 1.6; }
+
+    /* ── 项目 ── */
+    .project-list { list-style: none; }
+    .project-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); font-family: 'Noto Sans SC', sans-serif; font-size: 0.88rem; display: flex; gap: 1rem; align-items: baseline; }
+    .project-list li:last-child { border-bottom: none; }
+    .proj-tag { flex-shrink: 0; width: 3.2rem; font-weight: 500; color: var(--accent); text-align: left; }
+
+    /* ── 荣誉 ── */
+    .honor-list { list-style: none; }
+    .honor-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--rule); font-family: 'Noto Sans SC', sans-serif; font-size: 0.88rem; display: flex; gap: 1rem; align-items: baseline; }
+    .honor-list li:last-child { border-bottom: none; }
+    .honor-year { flex-shrink: 0; width: 3.2rem; font-weight: 500; color: var(--accent); text-align: left; }
+    .honor-top { font-weight: 500; color: var(--ink); }
+
+    /* ── 活动 ── */
+    .act-list { list-style: none; }
+    .act-item { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); font-family: 'Noto Sans SC', sans-serif; font-size: 0.87rem; display: flex; gap: 1rem; align-items: baseline; }
+    .act-item:last-child { border-bottom: none; }
+    .act-year { flex-shrink: 0; width: 3.2rem; font-weight: 500; color: var(--muted); text-align: left; }
+    .act-item em { font-style: normal; color: var(--accent); }
+
+    footer { text-align: center; padding: 2rem 0; font-family: 'Noto Sans SC', sans-serif; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--rule); }
+
+    /* ── 动画 ── */
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .fade.in { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .avatar-box { width: 130px; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.2rem; }
+      .nav-links { gap: 1rem; }
+    }
+
+    .en { display: none; }
+    body.en-mode .zh { display: none; }
+    body.en-mode .en { display: inline; }
+
+    #langSwitch {
+      border: 1px solid var(--rule);
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <span class="zh">刘铖学术主页</span>
+      <span class="en">LIU Cheng | Academic Homepage</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#publications"><span class="zh">论文发表</span><span class="en">Publications</span></a></li>
+      <li><a href="#projects"><span class="zh">科研项目</span><span class="en">Projects</span></a></li>
+      <li><a href="#honors"><span class="zh">荣誉奖项</span><span class="en">Honors</span></a></li>
+      <li><a href="#activities"><span class="zh">学术活动</span><span class="en">Activities</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div style="text-align:right; padding:10px 2rem;">
+  <button id="langSwitch">EN / 中文</button>
+</div>
+
+<!-- Hero -->
+<section id="hero" style="border-top:none; padding-top:2rem;">
+  <div class="wrapper">
+    <div class="hero-grid">
+      <div class="fade">
+        <div class="hero-name">
+          <span class="zh">刘 铖</span>
+          <span class="en">LIU Cheng</span>
+        </div>
+        <div class="hero-en">LIU Cheng</div>
+        <div class="hero-position">
+          <span class="zh">教育学博士候选人 · 南京大学教育研究院</span>
+          <span class="en">Ph.D. Candidate in Education · Graduate School of Education, Nanjing University</span>
+        </div>
+        <p class="hero-bio">
+          <span class="zh">持续立足教育学与社会学交叉领域，聚焦教育与社会经济的互动机制，兼及社会学视角的高等教育、教师教育研究。曾发表论文20余篇，以<strong>第一作者</strong>身份在SSCI/CSSCI发表<strong>10篇</strong>，含 <em>British Journal of Sociology</em>及《社会》《清华大学教育研究》等多学科顶级期刊，并在教育学权威期刊《教育研究》发表合作论文。多篇被《中国社会科学文摘》、人大复印报刊资料等全文转载，入选2024、2025中国知网<strong>高被引学者TOP 5%</strong>，并受多所高校邀请报告。先后主持省级课题2项，参与国家课题2项。曾获国家奖学金2次，江苏省三好学生等荣誉20余项。</span>
+          <span class="en">My research sits at the intersection of sociology and education, focusing on the interplay between education and socioeconomic structures, as well as higher education and teacher education from a sociological perspective. I have published over 20 papers, including <strong>10 first-authored</strong> SSCI/CSSCI publications in outlets such as the <em>British Journal of Sociology</em>, <em>Society</em>, and <em>Tsinghua Journal of Education</em>, and a co-authored paper in <em>Educational Research</em>. Several papers have been reprinted in full by <em>Chinese Social Sciences Digest</em> and Renmin University's journal reprint series. I have been selected as a <strong>Top 5% Highly Cited Scholar</strong> on CNKI in both 2024 and 2025, and have been invited to present at multiple universities. I have led 2 provincial research projects and participated in 2 national projects, and have received the National Scholarship twice along with over 20 other honors.</span>
+        </p>
+        <div class="hero-links">
+          <a href="mailto:chengliu_edu@163.com">
+            <span class="zh">发送E-mail</span><span class="en">Email</span>
+          </a>
+          <a href="CV.pdf" target="_blank">
+            <span class="zh">查看简历</span><span class="en">Curriculum Vitae</span>
+          </a>
+          <a href="https://kns.cnki.net/kcms2/author/detail?v=InrCKZ6Ohl46EG31CPKC1gaXQRF-zYev9tgwXuuzqX3PIut7KZ_PMNeIq_hIUhMeRzDHf8ixQh9rsgQIpq1ZAsTGJGXvHpAV4uiwWVwvt10A75F-BA1uyw==&uniplatform=NZKPT&language=CHS" target="_blank">CNKI</a>
+          <a href="https://www.researchgate.net/profile/Cheng-Liu-107?ev=hdr_xprf" target="_blank">ResearchGate</a>
+          <a href="https://orcid.org/0009-0000-8779-6977" target="_blank">ORCID</a>
+        </div>
+      </div>
+      <div class="fade" style="transition-delay:.15s">
+        <div class="avatar-box">
+          <img src="photo.jpg" alt="刘铖" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 论文成果 -->
+<section id="publications">
+  <div class="wrapper fade">
+    <div class="sec-label">Publications</div>
+    <div class="sec-title">
+      <span class="zh">论文成果</span>
+      <span class="en">Publications</span>
+    </div>
+
+    <div class="pub-group">
+      <div class="pub-group-title">
+        <span class="zh">教育社会学</span>
+        <span class="en">Sociology of Education</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">Does Education Legitimise Inequality? Comparative Analysis of Income Inequality, Education, and Meritocratic Beliefs</div>
+        <div class="pub-meta"><strong>Liu Cheng</strong>, Wang Jingjing. <span class="pub-venue">The British Journal of Sociology</span>, 2026, 77(1).</div>
+        <div class="pub-badges">
+          <span class="badge">SSCI</span>
+          <span class="badge"><span class="zh">中科院1区TOP</span><span class="en">CAS Q1 TOP</span></span>
+          <span class="badge">JCR-Q1</span>
+          <span class="badge"><span class="zh">国际社会学顶刊</span><span class="en">Leading International Sociology Journal</span></span>
+        </div>
+        <div class="pub-abstract">The paradox of inequality posits that individuals in high‐inequality societies paradoxically exhibit stronger meritocratic beliefs, perceiving their societies as systems that reward individuals based on ability and effort rather than social background or connections. This study presents an explanation from the perspective of critical sociology of education, complementing prior research that offers community contextual and psychosocial insights. By analysing the ISSP 2019 dataset, which includes 29 countries or regions, we find that in countries or regions with high income inequality, education serves to legitimise inequality and diminishes individuals' awareness of the structural factors contributing to inequality. Conversely, in those with low inequality, while basic education also functions to legitimise inequality, advanced stages of education possess an enlightening character that enables individuals to be more aware of the structural factors that lead to inequality. Generally, by estimating the interactions between education and country‐level income inequality, this study elucidates the factors contributing to the paradox of inequality and reconciles the persistent argument between legitimisation and enlightenment theories of education.</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">优绩主义陷阱的本土检视：从"上下有别"到"先赋应得"</span>
+          <span class="en">Examining the Meritocracy Trap in China: From "Upper-Lower Distinction" to "Ascribed-Desert"</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">余秀兰, 云如先</span><span class="en">Yu Xiulan, Yun Ruxian</span>. <span class="pub-venue"><span class="zh">《社会》</span><span class="en">Society</span></span>, 2024, 44(4).</div>
+        <div class="pub-badges">
+          <span class="badge">CSSCI</span>
+          <span class="badge"><span class="zh">社会学权威期刊</span><span class="en">Leading Sociology Journal</span></span>
+          <span class="badge"><span class="zh">中国社会科学文摘全文转载</span><span class="en">Reprinted in Chinese Social Sciences Digest</span></span>
+          <span class="badge"><span class="zh">人大复印《社会学》全文转载</span><span class="en">Reprinted in RUC Sociology Reprint Series</span></span>
+        </div>
+        <div class="pub-abstract">
+          <span class="zh">优绩主义陷阱实质是个人主义归因偏误：以"能力+努力=成功"掩盖出身和运气的影响。其在西方制造出"精英的傲慢"和"底层的怨恨"，最终导致社会撕裂。在中国，高考作为典型的优绩制，学生们对高考分层的归因能够体现优绩主义陷阱在中国情境中的表现。通过比较城市籍精英学子和农村籍二本学生这两类群体在归因自己和对方的高考结果时所运用的图式，本研究发现，"上下有别"的归因现象虽部分印证了优绩主义陷阱的理论假设，但是"谦虚"心理可能部分缓解了"精英的傲慢"；不同于西方的是，两类群体都持有"先赋应得"观念：认为天赋、出身等作为非个体可控的因素，是不置可否的或者具有正当性的。"先赋应得"观念与罗尔斯正义论中的"反应得"原则不同，它反而和优绩主义形成强功能关系，缓冲了优绩主义陷阱在中国可能产生的类似于西方的社会后果，然而它也隐藏着更深层次的文化陷阱。鉴于此，应将优绩主义嵌入中国情境中进行分析，而非"脱嵌"地迁移现有理论进行解释。</span>
+          <span class="en">The meritocracy trap is essentially an individualistic attribution bias, in which the formula "ability + effort = success" obscures the roles of social origin and luck. In Western societies, this trap produces "elite arrogance" and "lower-class resentment," ultimately leading to social fractures. In China, the college entrance examination (gaokao) serves as a paradigmatic meritocratic institution, and students' attribution of gaokao outcomes reflects the local manifestations of the meritocracy trap. By comparing the attribution schemas employed by urban elite students and rural lower-tier college students when explaining their own and each other's gaokao results, this study finds that the "upper-lower distinction" partially corroborates the theoretical assumptions of the meritocracy trap, though a "humility" psychology may partially mitigate "elite arrogance." Unlike in the West, both groups subscribe to an "Ascribed-Desert" belief — viewing innate talent and social origin as factors beyond individual control that are either morally neutral or morally legitimate. This belief differs from the Rawlsian anti-desert principle; instead, it forms a strong functional relationship with meritocracy, buffering the Western-like social consequences of the meritocracy trap in China, while concealing deeper cultural traps. The analysis calls for embedding meritocracy within the Chinese context rather than applying existing theories in a decontextualized manner.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">作为补偿性控制的优绩主义理念：中国情境中优绩主义如何影响学业压力？</span>
+          <span class="en">The Meritocratic Ideology as a Compensatory Control: How Does Meritocracy Affect Academic Stress in China?</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">余秀兰, 周童</span><span class="en">Yu Xiulan, Zhou Tong</span>. <span class="pub-venue"><span class="zh">《清华大学教育研究》</span><span class="en">Tsinghua Journal of Education</span></span>, 2026, 47(3).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span><span class="badge"><span class="zh">教育学权威期刊</span><span class="en">Leading Education Journal</span></span></div>
+        <div class="pub-abstract">
+          <span class="zh">优绩主义理念近年来饱受公众和学界的批判，其中一个重要原因是，人们普遍受到以马科维茨和桑德尔为代表的学说影响，认为优绩主义理念导致过度的学业竞争压力。然而，学业压力必然是由优绩主义理念导致的吗？基于中国家庭追踪调查多期数据的分析，研究结果并不支持以马科维茨和桑德尔为代表的理论学说：学生感知到的优绩主义并不必然和学业压力的增长相关，反而有证据表明，它可能缓解部分（来自弱势背景）学生群体的学业压力。该结果反而和补偿性控制理论的解释相符合，按照该理论的解释，弱势群体的优绩主义感知恰恰能够补偿个体因弱势处境而损失的自我控制感，这和项飙的洞见也是相符的。以上结果说明，需注意到中美情境差异，客观看待学生学业压力的形成原因，不急于否定优绩主义理念。该研究有助于推动理论本土化，并回应公众和学界关切。</span>
+          <span class="en">Meritocratic ideology has faced growing criticism from both the public and academics, largely influenced by scholars such as Markovits and Sandel, who argue that meritocracy generates excessive academic competitive stress. But does meritocracy necessarily cause academic stress? Drawing on multiple waves of data from the China Family Panel Studies, our findings do not support the theoretical claims of Markovits and Sandel: students' perceived meritocracy is not necessarily associated with increased academic stress; indeed, evidence suggests it may alleviate academic stress for students from disadvantaged backgrounds. These results are more consistent with compensatory control theory, which holds that meritocratic perception compensates for the sense of self-control lost due to disadvantaged circumstances — a finding that also resonates with the insights of Xiang Biao. These results highlight the need to attend to contextual differences between China and the United States, to evaluate the causes of student academic stress objectively, and to avoid hasty rejection of meritocratic ideology. This study contributes to the localization of theory and responds to public and scholarly concerns.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">文化资本的中国性——从法国、美国到中国的"元场域"视角</span>
+          <span class="en">The Chineseness of Cultural Capital: The "Meta-Field" Perspective from France, the United States to China</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">余秀兰</span><span class="en">Yu Xiulan</span>. <span class="pub-venue"><span class="zh">《复旦教育论坛》</span><span class="en">Fudan Education Forum</span></span>, 2025, 23(3).</div>
+        <div class="pub-badges">
+          <span class="badge">CSSCI</span>
+          <span class="badge"><span class="zh">人大复印《教育学》全文转载</span><span class="en">Reprinted in RUC Education Reprint Series</span></span>
+        </div>
+        <div class="pub-abstract">
+          <span class="zh">资本的作用依赖于特定的场域，研究文化资本时需要将作为"元场域"的国家考虑在内。将文化资本概念运用至不同国家的前提，是区分概念之"内涵"和"外延"："内涵"具有跨情境恒定性，而"外延"则会因国家情境而异，每个国家都有自己独特的、被广泛认可的、起着社会和文化排斥作用的高地位文化信号。在美国情境中，文化资本的外延就和法国不同。在中国，儒家文化、"官本位"文化、教育"有用性"观念、留学教育、近代文化动荡、标准化考试机制、社会政策的空间张力等因素也引发了中国情境中文化资本的外延变异，且外延的制度化程度较低；其中，国家权力的强力塑造是贯穿中国古代、近代和当代的突出特征。以往研究往往从微观经验现象中寻找文化资本的中国性，而本文的贡献在于，纳入了国家的"元场域"视角，提供了一种系统性理解。</span>
+          <span class="en">The efficacy of capital depends on specific fields, and research on cultural capital must account for the state as a "meta-field." The prerequisite for applying the concept of cultural capital across national contexts is to distinguish between its "intension" and "extension": the intension remains constant across contexts, while the extension varies by national setting — each country has its own distinctive, widely recognized, high-status cultural signals that perform social and cultural exclusion. In the American context, the extension of cultural capital differs from that in France. In China, factors such as Confucian culture, the "official-standard" culture, the notion of educational "usefulness," study-abroad education, modern cultural upheavals, standardized examination mechanisms, and the spatial tensions of social policy have produced variations in the extension of cultural capital in the Chinese context, with relatively low levels of institutionalization. Among these, the powerful shaping role of state power is a salient feature running through ancient, modern, and contemporary China. While previous research has typically sought the Chineseness of cultural capital through micro-level empirical phenomena, this article contributes a systematic understanding by incorporating the "meta-field" perspective of the state.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">"底层文化资本"的象征资本问题——阶层突破的评价社会学视角</span>
+          <span class="en">The Symbolic Capital of Underclass Cultural Capital: Class Mobility from the Perspective of Sociology of (e)Valuation</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">陈鹏</span><span class="en">Chen Peng</span>. <span class="pub-venue"><span class="zh">《中国青年研究》</span><span class="en">China Youth Study</span></span>, 2023, (5).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">底层文化资本为底层子弟突破文化再生产提供了可能性，然而，它本身却隐含着一些不可忽视的道德陷阱：它承认了标准化的高考制度逻辑但并未注意到社会互动中的资本合法性问题；它在打破精英主义秩序的同时又落入了另一种"底层精英主义"；它丢失了社会学的批判本性，为现有的价值分配规则"唱赞歌"。底层文化资本若想真正挑战教育阶层流动的理论与现实，则需将"底层文化资本的象征资本"考虑在内，即构成一种能够在互动中获得承认的资本，并在现有的象征秩序中争取一席之地。在底层文化资本研究中引入象征资本的解释机制意味着关注了底层文化资本的关系性和结构性。在这个意义上，底层文化资本研究宜迈向评价社会学的视角，在评价实践的动态过程中进一步考察底层文化资本的合法性问题。</span>
+          <span class="en">Underclass cultural capital provides the possibility for working-class youth to break through cultural reproduction; however, it harbors several moral traps that cannot be ignored: it accepts the logic of the standardized gaokao system without attending to the question of capital legitimacy in social interaction; it dismantles elitist order only to fall into another form of "underclass elitism"; and it abandons the critical nature of sociology by effectively endorsing existing rules of value distribution. If underclass cultural capital is to genuinely challenge both the theory and reality of educational class mobility, it must take into account the "symbolic capital of underclass cultural capital" — that is, forming a capital capable of gaining recognition in interaction and securing a place within the existing symbolic order. Introducing the explanatory mechanism of symbolic capital into research on underclass cultural capital means attending to the relational and structural dimensions of such capital. In this sense, research on underclass cultural capital should move toward the perspective of the Sociology of (e)Valuation, examining the question of its legitimacy within the dynamic processes of evaluative practice.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">作为社会过程的教育评价：基于欧美"评价社会学"的教育评价研究范式扩展</span>
+          <span class="en">Educational Evaluation as a Social Process: Expanding the Paradigm of Educational Evaluation Research Based on the "Sociology of (e)Valuation" in the West</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">余秀兰</span><span class="en">Yu Xiulan</span>. <span class="pub-venue"><span class="zh">《外国教育研究》</span><span class="en">Studies in Foreign Education</span></span>, 2025, 52(2).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">教育评价发挥着教育活动的"指挥棒"作用，教育评价研究是教育研究的关键。我国既有的教育评价研究主要遵循功能主义立场，具有三种取向：政策取向、技术取向和理念取向，而长期忽视第四种取向——社会学取向。受启发于由米歇尔·拉蒙提出并在欧美盛行的"评价社会学"，教育评价研究的社会学取向则持有建构主义或批判主义立场，强调一个核心命题：教育评价乃是一个社会过程，教育评价的社会运作过程才是教育评价真正的合法性基础。和传统取向不同，社会学取向研究的重点不是单纯的教育评价政策、评价技术/工具和评价理念，而是通过介入式、非介入式或实验模拟等方法，研究教育评价实践的整体运作过程，并捕捉教育评价与社会过程/结构之间的关系。杜威实用主义价值哲学、布迪厄的文化社会学、拉蒙的"象征边界"能够为该取向的研究提供坚实的理论支撑。</span>
+          <span class="en">Educational evaluation functions as the "baton" of educational activities, making research on educational evaluation central to the field of education. Existing research in China has primarily followed a functionalist stance, encompassing three orientations: policy, technical, and philosophical. A fourth orientation — the sociological — has long been neglected. Inspired by the "Sociology of (e)Valuation" proposed by Michèle Lamont and widely influential in Europe and North America, the sociological orientation in educational evaluation research adopts a constructivist or critical stance, emphasizing a core proposition: educational evaluation is a social process, and it is precisely this social process of operation that constitutes the genuine basis of its legitimacy. Unlike traditional orientations, the sociological orientation focuses not merely on evaluation policies, techniques/instruments, or philosophical ideals, but rather on investigating the overall operational process of educational evaluation practices — through interventionist, non-interventionist, or experimental simulation methods — and capturing the relationship between educational evaluation and social processes/structures. Dewey's pragmatist philosophy of value, Bourdieu's cultural sociology, and Lamont's concept of "symbolic boundaries" can provide solid theoretical foundations for research in this orientation.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">合并转设背景下本科职业教育推进的民众阻抗及其消解——基于新制度经济学的民众舆情分析</span>
+          <span class="en">Public Resistance and Resolutions Against It in the Promotion of Undergraduate Vocational Education in the Background of "Merger for Transfer": An Analysis of Public Opinion Based on Neoinstitutional Economics</span>
+        </div>
+        <div class="pub-meta"><span class="zh">陈鹏, <strong>刘铖</strong></span><span class="en">Chen Peng, <strong>Liu Cheng</strong></span>. <span class="pub-venue"><span class="zh">《教育研究》</span><span class="en">Educational Research</span></span>, 2022, 43(6).</div>
+        <div class="pub-badges">
+          <span class="badge">CSSCI</span>
+          <span class="badge"><span class="zh">教育学顶刊</span><span class="en">Top Education Journal</span></span>
+          <span class="badge"><span class="zh">江苏省应用研究精品工程一等次</span><span class="en">First Prize, Jiangsu Applied Research Excellence Program</span></span>
+        </div>
+        <div class="pub-abstract">
+          <span class="zh">合并转设为我国独立学院转设和职业院校升本提供了互惠性的机遇，但在推进过程中却受到重重钳制，尤其是民众的阻抗。新制度经济学理论中正式规则与非正式规则的二分法能够为研究政府意志与民众阻抗间的互动提供分析框架。采用网络爬虫采集技术，在微博、贴吧等虚拟社区采集相关舆情数据，并基于内容分析法，利用新制度经济学理论框架对数据进行类型化分析。结果显示，本科职业教育在推进过程中主要受到缺位—抵抗型、矛盾—怀疑型、模糊—疑惑型三种形式的民众阻抗。这些阻抗主要源自于正式规则和非正式规则不同程度的交叉影响：一方面，新的正式规则在信息生产、流动与再生产过程中出现了不完全性、非对称性；另一方面，受到文化结构中固有的价值秩序、代际传递中的道德化规约和同辈群体中的"意见气候"三个不同层次的非正式规则的社会嵌入性影响。据此，建议提升政策的系统生产、有效传递与合理消化，以正式规则信息的有效流通缓解在文化、认知、情绪和行为等层面的民众阻抗。</span>
+          <span class="en">The "Merger for Transfer" policy provides mutually beneficial opportunities for the restructuring of independent colleges and the upgrading of vocational colleges to bachelor's degree-granting institutions. However, its implementation has encountered substantial resistance, particularly from the public. The distinction between formal and informal rules in Neoinstitutional Economics offers an analytical framework for examining the interaction between government intent and public resistance. Using web crawling to collect public opinion data from virtual communities such as Weibo and Baidu Tieba, and applying content analysis within this theoretical framework, the study identifies three main forms of public resistance: absence-resistance, contradiction-skepticism, and ambiguity-confusion. These forms of resistance primarily stem from the interplay of formal and informal rules at varying degrees: on one hand, new formal rules exhibit incompleteness and asymmetry in the production, circulation, and reproduction of information; on the other hand, they are shaped by the social embeddedness of informal rules at three levels — the inherent value order in cultural structures, the moral norms transmitted across generations, and the "climate of opinion" within peer groups. Based on these findings, the study recommends improving the systematic production, effective dissemination, and reasonable assimilation of policies, and using the effective circulation of formal rule information to alleviate public resistance at the cultural, cognitive, emotional, and behavioral levels.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">教育何以助推第三次分配公平？——基于教育"经济-人文"双重价值的实证探索</span>
+          <span class="en">How Does Education Promote Fairness in the Third Distribution? An Empirical Exploration Based on the "Economic-Humanistic" Values of Education</span>
+        </div>
+        <div class="pub-meta"><span class="zh">王鑫, <strong>刘铖（通讯作者）</strong>, 云如先</span><span class="en">Wang Xin, <strong>Liu Cheng (Corresponding Author)</strong>, Yun Ruxian</span>. <span class="pub-venue"><span class="zh">《教育与经济》</span><span class="en">Education and Economy</span></span>, 2024, 40(6).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">三次分配是我国的基础性制度安排，教育在理论上应是贯穿三次分配并促进共同富裕的有效途径。然而，以往研究多关注教育在初次分配和再分配中的作用，较少关注教育在第三次分配中的作用。基于中国家庭追踪调查数据，使用工具变量法，探索教育在提升个人捐赠方面的作用和机制。分析发现，教育能显著提高个人的捐赠参与率(10.1%)和捐赠金额(8.4%),捐赠参与率的提升依赖教育"经济—人文"双重价值的协同效应，而捐赠金额的增加却主要依赖于教育的人文价值，其中，社会互动是关键。教育在促进第三次分配中具有关键作用，其人文价值的重要性大于经济价值，且增强教育过程中的社会互动性是发挥教育人文价值的关键。</span>
+          <span class="en">The three-tier distribution system constitutes a fundamental institutional arrangement in China, and education is theoretically an effective means of running through all three tiers of distribution to promote common prosperity. However, existing research has focused mainly on the role of education in primary distribution and redistribution, with insufficient attention paid to the third distribution. Drawing on data from the China Family Panel Studies and employing an instrumental variable approach, this study explores the role and mechanisms of education in promoting individual charitable giving. The analysis finds that education significantly increases both the participation rate (10.1%) and the amount (8.4%) of individual donations. The increase in participation rate relies on the synergistic effect of education's dual "economic-humanistic" values, while the increase in donation amount depends primarily on education's humanistic value, with social interaction serving as the key mechanism. Education plays a crucial role in promoting the third distribution; its humanistic value outweighs its economic value, and enhancing social interaction in the educational process is key to realizing education's humanistic value.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">从"脱嵌"到"互嵌"：职业教育赋能"零工劳动"的角色转型</span>
+          <span class="en">From "Disembedding" to "Embedding": The Role Transformation of Vocational Education to Empower "Gig Labor"</span>
+        </div>
+        <div class="pub-meta"><span class="zh">陈鹏, <strong>刘铖</strong>, 陈沛酉</span><span class="en">Chen Peng, <strong>Liu Cheng</strong>, Chen Peiyou</span>. <span class="pub-venue"><span class="zh">《教育发展研究》</span><span class="en">Research in Educational Development</span></span>, 2023, 43(21).</div>
+        <div class="pub-badges">
+          <span class="badge">CSSCI</span>
+          <span class="badge"><span class="zh">人大复印《职业技术教育》全文转载</span><span class="en">Reprinted in RUC Vocational and Technical Education Reprint Series</span></span>
+        </div>
+        <div class="pub-abstract">
+          <span class="zh">零工经济引起的劳动变革已广受关注，然而零工劳动与职业教育的关系还未被充分讨论。以外卖骑手为例，通过网络民族志和视频图像，分析该群体中存在的"过渡""爆单""APP""电动车""卡餐""差评"等具有"焦点隐喻"的本土概念发现，零工经济在依靠平台算法而为零工者提供较低的入职门槛"、自由"的工作时空"、精准"的供需匹配等多个"诱惑"的同时，也隐藏着去技能化的"陷阱"、职业团体的瓦解、劳资矛盾的"转嫁"等多个"暗面"。这一发现所内隐的逻辑是：零工劳动与职业教育需要从"脱嵌"走向"互嵌"。这要求职业教育突破既有框架，为零工者提供贯穿于个体生命历程的技能增值与流动、校企深入合作的职业生涯规训，并构建基于算法的职业教育社会契约。</span>
+          <span class="en">The labor transformation brought about by the gig economy has attracted widespread attention, yet the relationship between gig labor and vocational education remains insufficiently discussed. Taking food delivery riders as a case, this study analyzes local "focal metaphor" concepts embedded in this group — such as "transition," "order surge," "APP," "electric vehicle," "stuck order," and "negative review" — through online ethnography and video imagery. The findings reveal that while the gig economy's platform algorithms offer multiple "temptations" to gig workers — including low entry barriers, "flexible" working time and space, and "precise" supply-demand matching — they also conceal multiple "dark sides": the deskilling trap, the dissolution of occupational communities, and the "transfer" of labor-capital conflicts. The implicit logic of these findings is that gig labor and vocational education need to move from "disembedding" to "embedding." This requires vocational education to break through existing frameworks, providing gig workers with lifelong skill enhancement and mobility, deepening school-enterprise collaboration in career development, and constructing an algorithm-based social contract for vocational education.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-group">
+      <div class="pub-group-title">
+        <span class="zh">教师教育</span>
+        <span class="en">Teacher Education</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">乡村定向师范生的多重身份冲突——基于社会学制度主义的教育民族志研究</span>
+          <span class="en">Rural-Oriented Pre-service Teachers Transitioning in Multiple Identities: An Ethnographic Study in a Chinese University Based on Sociological Institutionalism</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">陈鹏</span><span class="en">Chen Peng</span>. <span class="pub-venue"><span class="zh">《教育发展研究》</span><span class="en">Research in Educational Development</span></span>, 2022, (2).</div>
+        <div class="pub-badges">
+          <span class="badge">CSSCI</span>
+          <span class="badge">Reprinted in <em>Frontiers of Education in China</em></span>
+        </div>
+        <div class="pub-abstract">
+          <span class="zh">各地方院校的乡村定向师范生是近年出现的新群体。本研究以身份理论与社会学制度主义理论为基础构建三重身份的分析框架,并通过教育民族志研究深描乡村定向师范生内在身份认知与外在身份预期之间的互动图景及内在逻辑。研究发现,该群体在与政策的互动中形成支配性身份的同时,也被赋予身份"特权"、赋能学习动机,但政策的赋权与赋能作用之间呈现相互牵制的局面;在与社会规范的互动中,出于道德义务的拷问而与政策进行互惠性的交换,进而自觉承担身份责任,但自我性与公共性在底层逻辑上依旧相互冲突;在与自我的互动中,经历过污名化认知下的身份拒绝后,逐步自我和解与身份重塑,并在身份的习惯化与制度化之中分别采取被动妥协或主动调适两种不同取向的行动策略。</span>
+          <span class="en">Rural-oriented pre-service teachers at local universities constitute a newly emerging group in recent years. Drawing on identity theory and sociological institutionalism, this study constructs a triple-identity analytical framework and employs educational ethnography to provide a thick description of the interactive landscape and underlying logic between rural-oriented pre-service teachers' internal identity cognition and external identity expectations. The findings reveal that in their interaction with policy, this group forms a dominant identity while also being granted identity "privileges" and empowered in learning motivation, yet the policy's empowering and enabling effects are mutually constraining. In their interaction with social norms, they engage in reciprocal exchanges with policy driven by moral obligation, voluntarily assuming identity responsibilities, while tensions between self-oriented and public-oriented logics persist at a deeper level. In their interaction with the self, following identity rejection under stigmatized cognition, they gradually achieve self-reconciliation and identity reconstruction, adopting either passive compromise or active adaptation as action strategies in the processes of identity habituation and institutionalization.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">寻求"位育"的"辩证法"——乡村定向师范生的"身份—能动性"探究</span>
+          <span class="en">The Quest for the Dialectic of Adaptation: A Study on the Identity-Agency of Rural-Oriented Pre-service Teachers</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">陈鹏</span><span class="en">Chen Peng</span>. <span class="pub-venue"><span class="zh">《教师教育研究》</span><span class="en">Teacher Education Research</span></span>, 2022, 34(6).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">身份和能动性之间具有"链式反应"关系。乡村定向师范生的身份认同和能动性普遍较低，但其中仍存在着一类特殊群体：他们身份认同的观念形态具有抵抗性，而实践形态却呈现积极性。借助质性分析进一步探究这一现象，探索其身份分化的形成机理以及专业能动性得以可能的情境性条件后发现：乡村"污名"制造观念性抵抗，"非自愿契约"导致原生自主性受压抑，从而形成"叛逆者"的身份暗面；学校式惯习、组织承认、情感现场与情感标识等条件的耦合推动从"原生自主性受制"向"专业能动性释放"的辩证转化，造就"好学生"的明面身份。"位育"的"辩证法"可以概括这一"身份—能动性"形式。本研究可与既有的教师情感、韧性、自主性等话题形成对话空间，并为公费师范教育提供启示。</span>
+          <span class="en">There is a "chain reaction" relationship between identity and agency. Rural-oriented pre-service teachers generally exhibit low levels of identity commitment and agency; however, a distinctive subgroup exists whose ideational identity is characterized by resistance, while their practical identity displays positivity. Through qualitative analysis, this study further investigates this phenomenon, exploring the formation mechanisms of identity differentiation and the situational conditions under which professional agency becomes possible. The findings reveal that rural "stigma" generates ideational resistance, and the "involuntary contract" suppresses original autonomy, forming the "dark side" of the identity of the "rebel." The coupling of conditions such as school habitus, organizational recognition, affective settings, and affective markers drives the dialectical transformation from "suppressed original autonomy" to "released professional agency," constituting the "bright side" identity of the "good student." The "dialectic of adaptation" (weiyü) can encapsulate this form of identity-agency. This study opens a dialogic space with existing scholarship on teacher emotion, resilience, and autonomy, and offers implications for government-sponsored teacher education.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">"边界悖论"引发学术漂移——硕士研究生分类发展问题的个案分析</span>
+          <span class="en">Academic Drift Caused by the Border Paradox: A Case Study on the Categorical Development of Master's Programs</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">余秀兰</span><span class="en">Yu Xiulan</span>. <span class="pub-venue"><span class="zh">《中国高教研究》</span><span class="en">China Higher Education Research</span></span>, 2025, (4).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">专业学位和学术学位硕士研究生的分类发展在实践中常常遭遇困境，该现象是典型的学术漂移。"制度变迁说""组织资源说"和"地位竞争说"是学术漂移成因的三个经典解释。通过个案的分析性推理对已有解释作出补充。"边界悖论"即学术志趣和制度边界之间存在的"越界"和"守界"的内在张力，是导致学术漂移的内在成因。具体而言，专业硕士发展需兼顾职业性和学术性，但学术志趣具有突破知识边界的本性，可能会导致学生层面的学术漂移。因此，需要区分专业硕士和学术硕士不同的学术志趣，以保证专业硕士和学术硕士有效地分类发展，同时也需认可二者之间适度的边界渗透性。</span>
+          <span class="en">The differentiated development of professional degree and academic degree master's students frequently encounters difficulties in practice — a phenomenon that constitutes a typical form of academic drift. Three classical explanations account for the causes of academic drift: the "institutional change" thesis, the "organizational resources" thesis, and the "status competition" thesis. Through analytic induction from a case study, this article supplements existing explanations. The "Border Paradox" — the inherent tension between intellectual interests and institutional boundaries, manifest as tendencies to "cross the border" or "guard the border" — constitutes an internal cause of academic drift. Specifically, professional master's programs must balance vocational and academic orientations, but intellectual curiosity has an inherent tendency to break through knowledge boundaries, which may lead to academic drift at the student level. It is therefore necessary to differentiate the intellectual dispositions of professional and academic master's students to ensure their effective differentiated development, while also recognizing an appropriate degree of boundary permeability between the two.</span>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">"师范热"现象是"实质繁荣"吗？——基于跨专业教育硕士"跨考"行动逻辑的分析</span>
+          <span class="en">Is the Phenomenon of "Teacher Education Fever" a "True Prosperity"? An Analysis Based on the Action Logic of Postgraduates Taking "Cross-discipline Examination" for Teacher Education</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>, <span class="zh">陈鹏</span><span class="en">Chen Peng</span>. <span class="pub-venue"><span class="zh">《研究生教育研究》</span><span class="en">Journal of Graduate Education</span></span>, 2025, (2).</div>
+        <div class="pub-badges"><span class="badge">CSSCI</span></div>
+        <div class="pub-abstract">
+          <span class="zh">近年来，"师范热"现象日益成为社会热流，跨专业报考教育硕士者亦越来越多，教师职业吸引力看似正在不断提高，然而，一个问题值得反思：该现象是否代表着师范专业的"实质繁荣",即构成"师范热"现象微观基础的是教师职业本身的道德吸引力吗?通过对12名跨专业小学教育硕士的访谈，并采用扎根理论分析"跨考"的行动逻辑发现，核心类属"能动再生产"可以从理论层面概括该行动逻辑：他们既在经验反思和理性考量中做出"能动"选择，也在父辈、同辈文化乃至职业、象征秩序和性别生产关系等社会结构性特征的"再生产"中做出决策。据此可以发现，构成"师范热"现象微观基础的，除受社会结构推动的"非理性行动"外，主要是个体层面的"强利益型动机"和"弱道德型动机",这意味着"师范热"现象的道德性微观基础并不稳固。为此，需识别、挖掘或强化跨考者报考教育硕士的"道德型动机",转化"非理性行动",从而促进师范专业的"实质繁荣"。</span>
+          <span class="en">In recent years, the "Teacher Education Fever" has become an increasingly prominent social trend, with growing numbers of cross-discipline candidates applying for Master of Education programs, and the attractiveness of the teaching profession seemingly on the rise. However, a critical question warrants reflection: does this phenomenon represent a "true prosperity" of teacher education — that is, is the moral appeal of the teaching profession itself the micro-level foundation of the "Teacher Education Fever"? Through interviews with 12 cross-discipline primary education master's students and grounded theory analysis of their "cross-discipline examination" action logic, the study finds that the core category of "agentive reproduction" can theoretically encapsulate this action logic: students make "agentive" choices through experiential reflection and rational deliberation, while also making decisions shaped by the "reproduction" of social structural characteristics such as parental and peer culture, occupational and symbolic orders, and gender relations of production. The findings reveal that the micro-level foundation of the "Teacher Education Fever" consists, apart from "irrational action" driven by social structure, primarily of "strong interest-based motivation" and "weak moral motivation" at the individual level — suggesting that the moral micro-level foundation of the "Teacher Education Fever" is not yet solid. It is therefore necessary to identify, cultivate, or strengthen the "moral motivation" of cross-discipline applicants to Master of Education programs, and to transform "irrational action," thereby promoting the "true prosperity" of teacher education.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-group">
+      <div class="pub-group-title">
+        <span class="zh">社会研究方法论</span>
+        <span class="en">Social Research Methodology</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title-text toggle-title">
+          <span class="zh">"主观主义阐释"的批判：重申质性研究的知识客观性</span>
+          <span class="en">The Critique of "Subjectivism Interpretation": Reaffirming the Epistemic Objectivity of Qualitative Research</span>
+        </div>
+        <div class="pub-meta"><strong><span class="zh">刘铖</span><span class="en">Liu Cheng</span></strong>. <span class="pub-venue"><span class="zh">《当代教育科学》</span><span class="en">Contemporary Educational Science</span></span>, 2024, (4).</div>
+        <div class="pub-badges"><span class="badge"><span class="zh">北大核心</span><span class="en">PKU Core Journal</span></span></div>
+        <div class="pub-abstract">
+          <span class="zh">主观性和客观性之间的"对立"导致量化研究和质性研究范式之间的持久争论。部分质性研究者往往寄希望于彰显质性研究独特的主观性成分——一种主张主观阐释的"表现性逻辑"——来消解质性研究所遭受的"诟病"。然而，在实际研究操作过程中，过度的"表现性逻辑"往往会掩盖主张严谨证实（或证伪）的"明证性逻辑"，带来"过度阐释"和"强制阐释"问题，遮蔽作为学术研究"第一使命"的理论知识生产，带来知识的相对主义，消解学术共同体的知识对话空间。为此，质性研究不宜过度推崇研究过程中的"表现性逻辑"，需要对阐释主义中的主观主义面向保持一种自我批判，把握"阐释的限度"，寻求阐释的"公度"，并尽量追求差异性和证伪性的理论对话，以迈向"明证性逻辑"，重新构筑起自身的知识客观性基石，消解研究范式之间的紧张对立。</span>
+          <span class="en">The "opposition" between subjectivity and objectivity has fueled persistent debates between quantitative and qualitative research paradigms. Some qualitative researchers have sought to deflect criticism of qualitative research by foregrounding its distinctive subjective dimension — an "expressive logic" that advocates subjective interpretation. However, in actual research practice, an excessive "expressive logic" tends to overshadow the "demonstrative logic" that insists on rigorous verification (or falsification), giving rise to problems of "over-interpretation" and "coercive interpretation," concealing the production of theoretical knowledge as the "primary mission" of academic research, introducing epistemic relativism, and eroding the space for knowledge dialogue within the academic community. Qualitative research should therefore avoid overly championing the "expressive logic" in the research process. Instead, it needs to maintain a self-critical stance toward the subjectivist dimension of interpretivism, grasp the "limits of interpretation," seek the "commensurability" of interpretation, and strive for theoretically differentiated and falsifiable dialogue — moving toward "demonstrative logic" to reconstruct its epistemic objectivity and dissolve the antagonistic tensions between research paradigms.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 科研项目 -->
+<section id="projects">
+  <div class="wrapper fade">
+    <div class="sec-label">Projects</div>
+    <div class="sec-title">
+      <span class="zh">科研项目</span>
+      <span class="en">Research Projects</span>
+    </div>
+    <ul class="project-list">
+      <li>
+        <span class="proj-tag"><span class="zh">主持</span><span class="en">PI</span></span>
+        <span>
+          <span class="zh">江苏省研究生科研实践创新计划"收入差距归因的教育形塑机制研究"（2025—2026）</span>
+          <span class="en">Jiangsu Province Graduate Research and Practice Innovation Program: "The Educational Shaping Mechanisms of Income Gap Attribution" (2025–2026)</span>
+        </span>
+      </li>
+      <li>
+        <span class="proj-tag"><span class="zh">主持</span><span class="en">PI</span></span>
+        <span>
+          <span class="zh">江苏省研究生科研实践创新计划"规约与历变：乡村教师职业价值观的微观史学研究"（2021—2022）</span>
+          <span class="en">Jiangsu Province Graduate Research and Practice Innovation Program: "Norms and Historical Change: A Microhistorical Study of Rural Teachers' Occupational Values" (2021–2022)</span>
+        </span>
+      </li>
+      <li>
+        <span class="proj-tag"><span class="zh">参与</span><span class="en">Co-I</span></span>
+        <span>
+          <span class="zh">全国教育科学规划重大课题"拔尖创新人才贯通式培养研究"（2025至今）</span>
+          <span class="en">National Education Science Planning Major Project: "Research on the Integrated Cultivation of Top Innovative Talents" (2025–present)</span>
+        </span>
+      </li>
+      <li>
+        <span class="proj-tag"><span class="zh">参与</span><span class="en">Co-I</span></span>
+        <span>
+          <span class="zh">国家社会科学基金（教育学）一般课题"高校困难学生社会互动中情感能量的形成机制研究"（2023至今）</span>
+          <span class="en">National Social Science Fund (Education) General Project: "Research on the Formation Mechanisms of Emotional Energy in Social Interactions among Economically Disadvantaged College Students" (2023–present)</span>
+        </span>
+      </li>
+      <li>
+        <span class="proj-tag"><span class="zh">参与</span><span class="en">Co-I</span></span>
+        <span>
+          <span class="zh">江苏省教育科学规划重点课题"教育强国背景下高校青年教师职业发展支持体系的优化研究"（2025至今）</span>
+          <span class="en">Jiangsu Education Science Planning Key Project: "Research on Optimizing the Professional Development Support System for Young University Teachers in the Context of Building an Education Powerhouse" (2025–present)</span>
+        </span>
+      </li>
+      <li>
+        <span class="proj-tag"><span class="zh">参与</span><span class="en">Co-I</span></span>
+        <span>
+          <span class="zh">江苏省社会科学基金一般项目"江苏高质量职业教育体系建设研究"（2021—2025）</span>
+          <span class="en">Jiangsu Social Science Fund General Project: "Research on Building a High-Quality Vocational Education System in Jiangsu" (2021–2025)</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 荣誉奖项 -->
+<section id="honors">
+  <div class="wrapper fade">
+    <div class="sec-label">Honors & Awards</div>
+    <div class="sec-title">
+      <span class="zh">荣誉奖项</span>
+      <span class="en">Honors & Awards</span>
+    </div>
+    <ul class="honor-list">
+      <li><span class="honor-year">2025</span><span><span class="honor-top"><span class="zh">国家奖学金（博士）</span><span class="en">National Scholarship (Doctoral)</span></span></span></li>
+      <li><span class="honor-year"></span><span><span class="honor-top"><span class="zh">中国知网高被引学者 TOP 5%</span><span class="en">CNKI Highly Cited Scholar, Top 5%</span></span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">第七届全国高校高等教育学研究生学术论坛"超星杯"<strong>特等奖</strong></span><span class="en">7th National Graduate Forum on Higher Education Studies, "Chaoxing Cup" <strong>Grand Prize</strong></span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">江苏省社科联第十九届学术大会优秀论文一等奖（教育学与社会学专场）</span><span class="en">First Prize for Outstanding Paper, 19th Academic Conference of Jiangsu Social Science Association (Education & Sociology Session)</span></span></li>
+      <li><span class="honor-year">2024</span><span><span class="zh">南京大学英才一等学业奖学金</span><span class="en">Nanjing University Elite First-Class Academic Scholarship</span></span></li>
+      <li><span class="honor-year"></span><span><span class="honor-top"><span class="zh">中国知网高被引学者 TOP 5%</span><span class="en">CNKI Highly Cited Scholar, Top 5%</span></span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">第五届全球教师教育峰会"田家炳教师教育研究青年学者"称号</span><span class="en">5th Global Summit on Teacher Education, "Tin Ka Ping Young Scholar in Teacher Education Research" Award</span></span></li>
+      <li><span class="honor-year">2023</span><span><span class="honor-top"><span class="zh">江苏省三好学生</span><span class="en">Jiangsu Province Three-Good Student</span></span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">校级优秀毕业研究生</span><span class="en">Outstanding Graduate Student, University Level</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">复旦大学教育研究国际博士生论坛十佳论文</span><span class="en">Top 10 Paper, International Doctoral Forum on Education Research, Fudan University</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">江苏师范大学科研实践"十佳之星"第一名</span><span class="en">First Place, "Top 10 Stars" in Research Practice, Jiangsu Normal University</span></span></li>
+      <li><span class="honor-year">2022</span><span><span class="honor-top"><span class="zh">国家奖学金（硕士）</span><span class="en">National Scholarship (Master's)</span></span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">江苏省社科联"社科应用研究精品工程"优秀成果一等次</span><span class="en">First-Class Outstanding Achievement, Jiangsu Social Science Association "Applied Research Excellence Program"</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">辽宁省"枫叶优体杯"教育类研究生专业能力大赛专题研究论文二等奖</span><span class="en">Second Prize, Liaoning Province "Maple Leaf Cup" Graduate Professional Competency Competition in Education (Research Paper Category)</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">江苏省社科联第十五届学术大会优秀论文二等奖（教育学与社会学专场）</span><span class="en">Second Prize for Outstanding Paper, 15th Academic Conference of Jiangsu Social Science Association (Education & Sociology Session)</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">第八届中国"互联网+"大学生创新创业大赛校级选拔赛一等奖（项目负责人）</span><span class="en">First Prize, 8th China "Internet+" College Student Innovation and Entrepreneurship Competition, University-Level Selection (Project Leader)</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">校级优秀研究生</span><span class="en">Outstanding Graduate Student, University Level</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">校级一等学业奖学金</span><span class="en">First-Class Academic Scholarship, University Level</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">校级优秀团员</span><span class="en">Outstanding League Member, University Level</span></span></li>
+      <li><span class="honor-year">2021</span><span><span class="zh">全国教育学研究生学术论坛优秀论文奖</span><span class="en">Outstanding Paper Award, National Graduate Forum on Education</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">江苏省教育哲学暑期学校优秀学员</span><span class="en">Outstanding Participant, Jiangsu Province Philosophy of Education Summer School</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">第八届陶行知论坛优秀论文二等奖</span><span class="en">Second Prize for Outstanding Paper, 8th Tao Xingzhi Forum</span></span></li>
+      <li><span class="honor-year">2020</span><span><span class="zh">校级优秀毕业论文（本科）</span><span class="en">Outstanding Undergraduate Thesis, University Level</span></span></li>
+      <li><span class="honor-year"></span><span><span class="zh">校级优秀毕业生</span><span class="en">Outstanding Graduate, University Level</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 学术活动 -->
+<section id="activities">
+  <div class="wrapper fade">
+    <div class="sec-label">Academic Activities</div>
+    <div class="sec-title">
+      <span class="zh">学术活动</span>
+      <span class="en">Academic Activities</span>
+    </div>
+
+    <div style="margin-bottom:1.8rem;">
+      <div class="pub-group-title">
+        <span class="zh">受邀报告</span>
+        <span class="en">Invited Talks</span>
+      </div>
+      <ul class="act-list">
+        <li class="act-item"><span class="act-year">2025</span><span><em><span class="zh">复旦大学</span><span class="en">Fudan University</span></em><span class="zh">高等教育研究所，《天赋何以正当：超越罗尔斯的教育公平理论构建》</span><span class="en">, Institute of Higher Education. "How Can Talent Be Justified: Constructing a Theory of Educational Justice Beyond Rawls"</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><em><span class="zh">浙江大学</span><span class="en">Zhejiang University</span></em><span class="zh">马克思主义学院，《"有层次"的经验研究：从发问到发表》</span><span class="en">, School of Marxism. "'Layered' Empirical Research: From Research Questions to Publication"</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><em><span class="zh">南京大学</span><span class="en">Nanjing University</span></em><span class="zh">教育研究院，《"有层次"的研究：从发问到发表》</span><span class="en">, Graduate School of Education. "'Layered' Research: From Research Questions to Publication"</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><em><span class="zh">厦门大学</span><span class="en">Xiamen University</span></em><span class="zh">教育研究院"对话理想国"沙龙，《优绩主义感知和分配正义观念》</span><span class="en">, Institute of Education, "Dialogue with the Republic" Salon. "Meritocratic Perception and Distributive Justice Beliefs"</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><em><span class="zh">南京师范大学</span><span class="en">Nanjing Normal University</span></em><span class="zh">教育科学学院，《通过讲故事来"讲故事"：质性研究经验分享》</span><span class="en">, School of Educational Science. "'Telling Stories' Through Storytelling: Reflections on Qualitative Research"</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><em><span class="zh">江苏师范大学</span><span class="en">Jiangsu Normal University</span></em><span class="zh">教育科学学院，《做以理论推进为旨趣的实证研究》</span><span class="en">, School of Educational Science. "Conducting Theory-Advancing Empirical Research"</span></span></li>
+        <li class="act-item"><span class="act-year">2024</span><span><span class="zh">"未央学术"学术公益平台，《优绩主义陷阱的本土检视》</span><span class="en">"Weiyang Academia" Public Academic Platform. "Examining the Meritocracy Trap in China"</span></span></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="pub-group-title">
+        <span class="zh">学术会议</span>
+        <span class="en">Conference Presentations</span>
+      </div>
+      <ul class="act-list">
+        <li class="act-item"><span class="act-year">2026</span><span><span class="zh">第六届北京师范大学教育社会学论坛</span><span class="en">6th Forum on Sociology of Education, Beijing Normal University</span></span></li>
+        <li class="act-item"><span class="act-year">2025</span><span><span class="zh">中国社会学会2025年学术年会（社会分层与流动分论坛 · 农村教育分论坛）</span><span class="en">2025 Annual Conference of the Chinese Sociological Association (Social Stratification and Mobility · Rural Education Sessions)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">第十一届全国教育实证研究论坛（教育历史比较方法分论坛）</span><span class="en">11th National Forum on Empirical Research in Education (Historical-Comparative Methods in Education Session)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">第七届全国高校高等教育学研究生学术论坛（"超星杯"特等奖）</span><span class="en">7th National Graduate Forum on Higher Education Studies ("Chaoxing Cup" Grand Prize)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">中国教育学会高等教育学专业委员会高等教育研究博士论坛</span><span class="en">Doctoral Forum on Higher Education Research, Higher Education Committee, Chinese Education Association</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">第五届复旦大学教育研究国际博士生论坛</span><span class="en">5th International Doctoral Forum on Education Research, Fudan University</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">第二届全国教育社会学专业委员会青年学者论坛</span><span class="en">2nd Young Scholars Forum, National Committee for the Sociology of Education</span></span></li>
+        <li class="act-item"><span class="act-year">2024</span><span><span class="zh">第五届全球教师教育峰会青年学者论坛（"田家炳教师教育研究青年学者"称号）</span><span class="en">5th Global Summit on Teacher Education, Young Scholars Forum ("Tin Ka Ping Young Scholar in Teacher Education Research" Award)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">中国社会学会社会分层与流动专业委员会冬季论坛</span><span class="en">Winter Forum, Social Stratification and Mobility Committee, Chinese Sociological Association</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">中国社会学会2024年学术年会（时空社会学分论坛）</span><span class="en">2024 Annual Conference of the Chinese Sociological Association (Sociology of Time and Space Session)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">全国教育社会学专业委员会第18届年会</span><span class="en">18th Annual Conference of the National Committee for the Sociology of Education</span></span></li>
+        <li class="act-item"><span class="act-year">2023</span><span><span class="zh">中国社会学会2023年学术年会（时空社会学分论坛）</span><span class="en">2023 Annual Conference of the Chinese Sociological Association (Sociology of Time and Space Session)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">第三届复旦大学教育研究国际博士生论坛（十佳论文）</span><span class="en">3rd International Doctoral Forum on Education Research, Fudan University (Top 10 Paper)</span></span></li>
+        <li class="act-item"><span class="act-year">2022</span><span><span class="zh">中国社会学会2022年学术年会（农村教育分论坛）</span><span class="en">2022 Annual Conference of the Chinese Sociological Association (Rural Education Session)</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">全国教育社会学专业委员会第17届年会</span><span class="en">17th Annual Conference of the National Committee for the Sociology of Education</span></span></li>
+        <li class="act-item"><span class="act-year"></span><span><span class="zh">AASVEAT第17届国际会议</span><span class="en">17th International Conference of AASVEAT</span></span></li>
+        <li class="act-item"><span class="act-year">2021</span><span><span class="zh">第四届全球教师教育峰会</span><span class="en">4th Global Summit on Teacher Education</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrapper">
+    <span class="zh">© 2026 刘铖 · 最后更新：2026年5月</span>
+    <span class="en">© 2026 LIU Cheng · Last updated: May 2026</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.06 }
+  );
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  const langBtn = document.getElementById('langSwitch');
+  langBtn.addEventListener('click', () => {
+    document.body.classList.toggle('en-mode');
+  });
+
+  document.querySelectorAll('.toggle-title').forEach(title => {
+    title.addEventListener('click', () => {
+      const item = title.closest('.pub-item');
+      const abstract = item.querySelector('.pub-abstract');
+      if (abstract) abstract.classList.toggle('show');
+    });
+  });
+</script>
+</body>
+</html>
