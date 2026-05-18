@@ -112,6 +112,14 @@
     .act-year { flex-shrink: 0; width: 3.2rem; font-weight: 500; color: var(--muted); text-align: left; }
     .act-item em { font-style: normal; color: var(--accent); }
 
+    /* ── Blog ── */
+    .blog-list { display: flex; flex-direction: column; gap: 1rem; }
+    .blog-item { display: block; text-decoration: none; color: inherit; border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 1.2rem; background: #fff; transition: all .2s ease; }
+    .blog-item:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+    .blog-title { font-size: 1rem; font-weight: 600; color: var(--ink); line-height: 1.5; }
+    .blog-meta { margin-top: 0.35rem; font-family: 'Noto Sans SC', sans-serif; font-size: 0.78rem; color: var(--muted); }
+    .blog-desc { margin-top: 0.55rem; font-size: 0.88rem; color: #555; line-height: 1.7; }
+
     footer { text-align: center; padding: 2rem 0; font-family: 'Noto Sans SC', sans-serif; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--rule); }
 
     /* ── 动画 ── */
@@ -152,6 +160,7 @@
       <li><a href="#projects"><span class="zh">科研项目</span><span class="en">Projects</span></a></li>
       <li><a href="#honors"><span class="zh">荣誉奖项</span><span class="en">Honors</span></a></li>
       <li><a href="#activities"><span class="zh">学术活动</span><span class="en">Activities</span></a></li>
+      <li><a href="#blog"><span class="zh">博客文章</span><span class="en">Blog</span></a></li>
     </ul>
 
     <button id="langSwitch" class="lang-btn">
@@ -641,6 +650,73 @@
   </div>
 </section>
 
+
+<!-- 博客文章 -->
+<section id="blog">
+  <div class="wrapper fade">
+    <div class="sec-label">Blog</div>
+    <div class="sec-title">
+      <span class="zh">博客文章</span>
+      <span class="en">Blog</span>
+    </div>
+
+    <div class="blog-list">
+
+      <a class="blog-item" href="https://mp.weixin.qq.com/s/eOWzxOPESpaWbnP7o5q-Gg" target="_blank">
+        <div class="blog-title">
+          <span class="zh">“有层次”的研究才是好研究</span>
+          <span class="en">“Layered” Research is the Only Good Research</span>
+        </div>
+        <div class="blog-meta">
+          <span>2024/08</span>
+        </div>
+      </a>
+
+      <a class="blog-item" href="https://mp.weixin.qq.com/s/5YHW83UElvXX-NBT9HIJBA" target="_blank">
+        <div class="blog-title">
+          <span class="zh">理论是跳跃的能力，那怎么做到跳跃？</span>
+          <span class="en">Theory is the capacity to make a leap—so how does one achieve that leap?</span>
+        </div>
+        <div class="blog-meta">
+          <span>2024/10</span>
+        </div>
+      </a>
+
+      <a class="blog-item" href="https://mp.weixin.qq.com/s/JbyKIjXhCpzn49UitDnkVQ" target="_blank">
+        <div class="blog-title">
+          <span class="zh">研究应如何发问？摆脱向策略发问的低级趣味</span>
+          <span class="en">How Should Research Frame Its Questions? Moving Beyond the Triviality of Questioning Strategy</span>
+        </div>
+        <div class="blog-meta">
+          <span>2025/03</span>
+        </div>
+      </a>
+
+      <a class="blog-item" href="https://mp.weixin.qq.com/s/q7_c1LzgDmvUvGz6tm5OFw" target="_blank">
+        <div class="blog-title">
+          <span class="zh">社科研究，“大题小做”优先于“小题大做”</span>
+          <span class="en">Better an Imperfect Answer to a Major Question than a Perfect Answer to a Minor One</span>
+        </div>
+        <div class="blog-meta">
+          <span>2025/04</span>
+        </div>
+      </a>
+
+      <a class="blog-item" href="https://mp.weixin.qq.com/s/13PFBZT2JB8-mNIjFHP5sw" target="_blank">
+        <div class="blog-title">
+          <span class="zh">社科研究中，叙事只是手段，知识才是目的</span>
+          <span class="en">Narrative is Only the Pathway; Knowledge is the Destination</span>
+        </div>
+        <div class="blog-meta">
+          <span>2025/05</span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+  
 <footer>
   <div class="wrapper">
     <span class="zh">© 2026 刘铖 · 最后更新：2026年5月</span>
