@@ -213,14 +213,68 @@
     body.en-mode .zh { display: none; }
     body.en-mode .en { display: inline; }
 
-    #langSwitch {
+    .lang-toggle {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    
       border: 1px solid var(--rule);
-      background: white;
-      border-radius: 4px;
+      background: #fff;
+      border-radius: 999px;
+    
+      padding: 5px 12px;
       cursor: pointer;
-      padding: 6px 10px;
-      font-size: 12px;
+    
+      transition: all .25s ease;
     }
+    
+    .lang-toggle:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .lang-label {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.76rem;
+      color: var(--muted);
+      transition: color .25s ease;
+      z-index: 2;
+    }
+
+    .lang-slider {
+      position: absolute;
+      width: 34px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      left: 6px;
+      transition: transform .28s ease;
+    }
+    
+    .lang-toggle .zh-active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    body.en-mode .lang-slider {
+      transform: translateX(38px);
+    }
+
+    body.en-mode .lang-label {
+      color: var(--muted);
+    }
+    
+    body.en-mode .lang-label:last-child {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    body.en-mode .lang-label:first-child {
+      font-weight: 400;
+    }
+    
   </style>
 </head>
 <body>
@@ -239,8 +293,10 @@
       <li><a href="#blog"><span class="zh">博客文章</span><span class="en">Blog</span></a></li>
     </ul>
 
-    <button id="langSwitch" class="lang-btn">
-      中文 / EN
+    <button id="langSwitch" class="lang-toggle">
+      <span class="lang-label zh-active">中文</span>
+      <span class="lang-slider"></span>
+      <span class="lang-label">EN</span>
     </button>
   </div>
 </nav>
@@ -905,9 +961,17 @@
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
   const langBtn = document.getElementById('langSwitch');
+
   langBtn.addEventListener('click', () => {
     document.body.classList.toggle('en-mode');
+  
+    const zhLabel = langBtn.querySelector('.lang-label:first-child');
+    const enLabel = langBtn.querySelector('.lang-label:last-child');
+  
+    zhLabel.classList.toggle('zh-active');
+    enLabel.classList.toggle('zh-active');
   });
+  
 
   document.querySelectorAll('.toggle-title').forEach(title => {
     title.addEventListener('click', () => {
