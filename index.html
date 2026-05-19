@@ -88,6 +88,9 @@
     .pub-abstract { display: none; margin-top: 0.6rem; font-size: 0.85rem; color: #555; line-height: 1.7; border-left: 2px solid var(--rule); padding-left: 0.8rem; }
     .pub-abstract.show { display: block; }
     .toggle-title { cursor: pointer; }
+    .toggle-title:hover { color: var(--accent); cursor: pointer; }
+    .toggle-title::after { content: ' ↓'; font-size: 0.75rem; color: var(--muted); opacity: 0; transition: opacity .2s; }
+    .toggle-title:hover::after { opacity: 1; }
 
     /* ── 时间线 ── */
     .timeline { display: flex; flex-direction: column; }
@@ -1016,7 +1019,10 @@
     title.addEventListener('click', () => {
       const item = title.closest('.pub-item');
       const abstract = item.querySelector('.pub-abstract');
-      if (abstract) abstract.classList.toggle('show');
+      if (abstract) {
+        abstract.classList.toggle('show');
+        item.classList.toggle('open');
+      }
     });
   });
 </script>
